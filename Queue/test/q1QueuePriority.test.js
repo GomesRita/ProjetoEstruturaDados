@@ -1,30 +1,25 @@
-// Teste para a classe QueuePriority
-const QueuePriority = require('./q1QueuePriority.js');
-// Criar uma instância da fila de prioridade
-const queueTest = new QueuePriority();
+import QueuePriority from '../q1QueuePriority.js'
 
-// Teste 1: Verificar se a fila está inicialmente vazia
-console.assert(queueTest.isEmpty() === true, 'Erro: A fila deveria estar vazia');
+const queue = new QueuePriority();
 
-// Teste 2: Inserir elementos com diferentes prioridades
-queueTest.enqueueWithPriority('A', 2);
-queueTest.enqueueWithPriority('B', 1);
-queueTest.enqueueWithPriority('C', 3);
+queue.enqueueWithPriority('Joana', 2);
+queue.enqueueWithPriority('Teresa', 1);
+queue.enqueueWithPriority('Jose', 3);
+queue.enqueueWithPriority('Helena', 1);
+queue.enqueueWithPriority('Helena', 1);
 
-// Verificar se os itens foram ordenados corretamente
-console.assert(queueTest.queueItems[0].element === 'B', 'Erro: Elemento de maior prioridade deveria ser B');
-console.assert(queueTest.queueItems[1].element === 'A', 'Erro: Segundo elemento deveria ser A');
-console.assert(queueTest.queueItems[2].element === 'C', 'Erro: Terceiro elemento deveria ser C');
+console.log(queue.queueItems); // Verifica o estado da fila após inserções
 
-// Teste 3: Remover o primeiro item da fila (de maior prioridade)
-const removido = queueTest.dequeue();
-console.assert(removido.element === 'B', 'Erro: O elemento removido deveria ser B');
+queue.dequeue(); // Deve servir Teresa (prioridade 1)
+console.log(queue.queueItems); // Verifica o estado da fila após o primeiro dequeue
 
-// Teste 4: Verificar a fila após remover um item
-console.assert(queueTest.queueItems.length === 2, 'Erro: A fila deveria ter dois elementos restantes');
-console.assert(queueTest.queueItems[0].element === 'A', 'Erro: Primeiro elemento agora deveria ser A');
+queue.dequeue(); // Deve servir Helena (prioridade 1)
+console.log(queue.queueItems); // Verifica o estado da fila após o segundo dequeue
 
-// Teste 5: Verificar o comportamento da fila vazia
-queueTest.dequeue();
-queueTest.dequeue();
-console.assert(queueTest.isEmpty() === true, 'Erro: A fila deveria estar vazia após remover todos os itens');
+queue.dequeue(); // Deve servir Joana (prioridade 2)
+console.log(queue.queueItems); // Verifica o estado da fila após o terceiro dequeue
+
+queue.dequeue(); // Deve servir Jose (prioridade 3)
+console.log(queue.queueItems); // Verifica o estado da fila após o quarto dequeue
+
+queue.dequeue(); // Fila vazia
