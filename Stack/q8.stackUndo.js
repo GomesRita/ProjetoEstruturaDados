@@ -49,3 +49,6 @@ class UndoText {
   operation.undo();
   operation.undo();
   operation.undo();
+
+
+  module.exports = UndoText;

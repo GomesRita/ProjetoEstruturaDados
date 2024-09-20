@@ -1,29 +1,25 @@
-
-/**
- * Classe QueuePriority
- * Representa uma fila com prioridades, onde elementos são ordenados de acordo com sua prioridade.
- */
 class QueuePriority {
     constructor() {
-        /**
-         * @property {Array<Object>} queueItems - Array que armazena os elementos da fila com suas respectivas prioridades.
-         */
         this.queueItems = [];
     }
-
-    /**
-     * Verifica se a fila está vazia.
-     * @returns {boolean} - Retorna true se a fila estiver vazia, caso contrário, false.
+    /*
+     * O primeiro método da classe verifica se a fila está vazia.
+     * Retorna true se a fila estiver vazia, caso contrário, retorna false.
      */
     isEmpty() {
         return this.queueItems.length === 0;
     }
 
-    /**
-     * Adiciona um novo elemento à fila com uma prioridade.
-     * @param {*} element - O elemento a ser adicionado.
-     * @param {number} [priority=0] - A prioridade do elemento (quanto menor o número, maior a prioridade).
+    /*
+     * O segundo método da classe adiciona um novo elemento à fila com uma prioridade.
+     * [priority=0] - A prioridade do elemento (quanto menor o número, maior a prioridade).
+     * O novo elemento recebe as propriedades "element" e "priority" no qual inicia em zero.
+     * A primeira condição verifica se a lista de itens está vazia caso seja true ele insere o item na lista.
+     * Se for false é verificado seu nivel de prioridade comparado aos itens presentes na lista.
+     * O loop estabelecido nesse laço enqueueWithPriority insere um novo elemento de acordo com sua prioridade.
+     * Se o item já estiver contido é dado prioridade ao próximo.  
      */
+
     enqueueWithPriority(element, priority = 0) {
         let newElement = { element, priority };
         let contain = false;
@@ -32,34 +28,34 @@ class QueuePriority {
             this.queueItems.push(newElement);
         } else {
             for (let i = 0; i < this.queueItems.length; i++) {
-                // Insere o novo elemento no local correto de acordo com sua prioridade
                 if (this.queueItems[i].priority > newElement.priority) {
                     this.queueItems.splice(i, 0, newElement);
                     contain = true;
                     break;
                 }
             }
-            // Se não foi inserido durante o loop, insere no final
+            if (contain){
+                console.log(`The person ${element} is already in the queue. We will give priority to the next one.`);
+            }
             if (!contain) {
                 this.queueItems.push(newElement);
             }
         }
     }
 
-    /**
-     * Remove o primeiro elemento da fila (elemento de maior prioridade).
-     * @returns {*} - O elemento removido ou undefined se a fila estiver vazia.
-     */
+
+     //O metodo dequeue Remove o primeiro elemento da fila (elemento de maior prioridade).
     dequeue() {
         if (!this.isEmpty()) {
-            return this.queueItems.shift();
+            const serveElement = this.queueItems.shift();
+            console.log(`Servindo: ${ serveElement.element} com prioridade ${serveElement.priority}`);
+            return serveElement;
         } else {
             console.log("A fila está vazia");
         }
     }
 }
 
-// Exemplo de uso da classe
 const queue = new QueuePriority();
 queue.enqueueWithPriority('Joana', 2);
 queue.enqueueWithPriority('Teresa', 1);
@@ -67,9 +63,27 @@ queue.enqueueWithPriority('Jose', 3);
 queue.enqueueWithPriority('Helena', 1);
 queue.enqueueWithPriority('Helena', 1);
 
-console.log(queue.queueItems); // Verifica a ordem dos itens na fila
 
-console.log(queue.dequeue()); // Remove o primeiro item (elemento de maior prioridade)
-console.log(queue.queueItems); // Verifica a fila após o dequeue
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
 
-module.exports= QueuePriority;
+
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
+
+
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
+
+
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
+
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
+
+
+console.log(queue.queueItems); 
+console.log(queue.dequeue()); 
+
+module.exports = QueuePriority;
