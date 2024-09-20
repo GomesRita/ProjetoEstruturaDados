@@ -1,5 +1,5 @@
 
-class UndoText {
+class stackUndo {
     constructor() {
       this.stackUndo = []; 
     }
@@ -35,7 +35,7 @@ class UndoText {
 }
   
 
-  const operation = new UndoText();
+  const operation = new stackUndo();
   
   
   operation.push("Work "); 
@@ -51,4 +51,4 @@ class UndoText {
   operation.undo();
 
 
-  module.exports = UndoText;
+  module.exports = stackUndo;
