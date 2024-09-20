@@ -1,4 +1,4 @@
-import UndoText from "../q8.stackUndo.js";
+import UndoText from "./q8.stackUndo.js";
 
 describe('UndoText', () => {
     let operation;
